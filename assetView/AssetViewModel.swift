@@ -27,7 +27,7 @@ struct AssetViewModel: Fetcher{
     
     
     func fetchItem() {
-        var assetList: [Asset] = [Asset(name: "adfhdfh", description: "ahdfhdf")]
+        var assetList: [Asset] = []
         db.collection("assets").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -41,10 +41,13 @@ struct AssetViewModel: Fetcher{
                         }
                     }
                 }
+                
+                
                 //observing the items inserted
                 assets.onNext(assetList)
                 //observed the data change is completed
                 assets.onCompleted()
+                
             }
         }
     }
